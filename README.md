@@ -1,29 +1,111 @@
-# Tutorial
+# Tutorial - Интернет-магазин на Vue.js + Laravel
 
-This template should help get you started developing with Vue 3 in Vite.
+Учебный проект, созданный в процессе изучения полноценной разработки на стеке Vue.js 3 и Laravel. Интернет-магазин с системой авторизации, управлением товарами и API.
 
-## Recommended IDE Setup
+## Технологии
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+**Frontend:**
+- Vue.js 3
+- Vite
+- Vue Router
+- Pinia (или Vuex)
 
-## Customize configuration
+**Backend:**
+- Laravel 10+
+- MySQL
+- Sanctum (аутентификация)
+- Eloquent ORM
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Функциональность
 
-## Project Setup
+- Система авторизации по email + код подтверждения
+- RESTful API для управления товарами/главами
+- Взаимодействие фронтенда и бэкенда
+- Работа с базой данных
+- Валидация данных
+- Отправка email
 
-```sh
-npm install
+## Установка и запуск
+
+### 1. Клонирование репозитория
+```bash
+git clone https://github.com/RinsL-V/ART.git
+cd ART
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
+### 2. Настройка бэкенда (Laravel)
+```cd backend
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+Настройка базы данных:
+Отредактируйте backend/.env:
+```DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tutorial_db
+DB_USERNAME=root
+DB_PASSWORD=password
+```
+Запуск миграций:
+```php artisan migrate
+php artisan serve
+```
+### 3. Настройка фронтенда (Vue.js)
+```npm install
 npm run dev
 ```
 
-### Compile and Minify for Production
+### API Endpoints
+Аутентификация
+POST /api/register - Регистрация пользователя
 
-```sh
-npm run build
-```
+POST /api/login - Вход по email
+
+POST /api/verify - Подтверждение кода
+
+POST /api/logout - Выход
+
+GET /api/me - Информация о пользователе
+Товары/Главы
+GET /api/chapters - Получить список глав/товаров
+
+GET /api/chapters/{id} - Получить конкретную главу/товар
+
+### Цели проекта
+Изучение работы Vue.js 3 с Composition API
+
+Освоение Laravel и создания REST API
+
+Реализация системы аутентификации
+
+Настройка взаимодействия фронтенда и бэкенда
+
+Работа с базой данных через миграции
+
+Валидация данных на стороне сервера
+
+### Особенности реализации
+Авторизация: через email + 6-значный код подтверждения
+
+Безопасность: валидация данных, защита от SQL-инъекций
+
+API: RESTful архитектура с JSON responses
+
+База данных: миграции для контроля структуры БД
+
+### Планы по развитию
+Добавление корзины покупок
+
+Добавление категории "Избранное"
+
+Система оплаты
+
+Админ-панель
+
+Фильтрация и поиск товаров
+
+Отзывы и рейтинги
+
+Регистрация и авторизация на фронтенде
